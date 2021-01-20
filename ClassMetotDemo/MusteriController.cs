@@ -29,17 +29,23 @@ namespace ClassMetotDemo
 
                 musteriler[i] = mus;
             }
-            Console.WriteLine("Devam etmek için bir tuşa basınız!!!");
+            Console.WriteLine("(musEkle)Devam etmek için bir tuşa basınız!!!");
             Console.ReadLine();
         }
         public void musteriSil(Musteri[] musteriler)
         {
+            bool findMus = false;
             byte  classIndex = 0;
             Musteri mus = new Musteri();
-            Console.WriteLine("Musteri No giriniz:");
+            
+            foreach (var musno in musteriNoListele(musteriler))
+            {
+                Console.Write("--"+musno+"--");
+            }
+            Console.WriteLine("\nMusteri No giriniz:");
             uint musNo = uint.Parse(Console.ReadLine());
             musteriListele(musteriler, musNo);
-            Console.WriteLine("Bu Müşteri SİLİNECEK");
+            Console.WriteLine(musNo+"  Müşteri SİLİNECEK");
             //double yatan = double.Parse(Console.ReadLine());
             foreach (var item in musteriler)
             {
@@ -50,11 +56,24 @@ namespace ClassMetotDemo
                 {
                     if (item.musID == musNo)
                     {
+                        findMus = true;
 
-                        musteriler[classIndex] = mus;
                         
+                        for (int i = classIndex; i <musteriler.Length-1; i++)
+                        {
+                            musteriler[i] = musteriler[i + 1];
+                            Console.WriteLine("Muster Listesi:"+musteriler.Length+"  Class Index:"+classIndex+" i="+i);
+
+                        }
+                        musteriler[musteriler.Length-1] = mus;
+                        Console.WriteLine("(musSil)Müşteri SİLİNDİ!!!.Devam etmek için bir tuşa basınız!!!");
+                        Console.ReadLine();
                     }
-                    Console.WriteLine("Müşteri SİLİNDİ!!!.Devam etmek için bir tuşa basınız!!!");
+                   
+                }
+                if (!findMus)
+                {
+                    Console.WriteLine(musNo+ " numaralı Müşteri Bulunamadı!!! Devam etmek için bir tuşa basınız.");
                     Console.ReadLine();
                 }
                 classIndex++;
@@ -73,7 +92,7 @@ namespace ClassMetotDemo
                 Console.WriteLine("------------------------------------------\n");
             }
             }
-            Console.WriteLine("Devam etmek için bir tuşa basınız!!!");
+            Console.WriteLine("(musList)Devam etmek için bir tuşa basınız!!!");
             Console.ReadLine();
         }
         public void musteriListele(Musteri[] musteriler, uint musno)
@@ -96,6 +115,19 @@ namespace ClassMetotDemo
             //Console.WriteLine("Devam etmek için bir tuşa basınız!!!");
             //Console.ReadLine();
         }
+        public List<int> musteriNoListele(Musteri[] musteriler)
+        {
+            List<int> musNo = new List<int>();
+            foreach (var musteri in musteriler)
+            {
+                if (musteri == null) { break; }
+                else
+                {
+                    musNo.Add(musteri.musID);
+                }
+            }
+            return musNo;
+        }
         public void paraYatır(Musteri[] musteri)
         {
 
@@ -116,7 +148,7 @@ namespace ClassMetotDemo
                     }
                 }
             }
-            Console.WriteLine("Devam etmek için bir tuşa basınız!!!");
+            Console.WriteLine("(paraYat)Devam etmek için bir tuşa basınız!!!");
             Console.ReadLine();
         }
     }

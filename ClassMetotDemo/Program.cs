@@ -30,17 +30,22 @@ namespace ClassMetotDemo
                         contr.musteriEkle(musteriler);
                         break;
                     case 2:
-                        { 
-                        if ( (musteriler[0]!=null))
-                        contr.musteriListele(musteriler);
-                        else
-                                Console.WriteLine("Liste Boş");       
+                        {
+                            if ((musteriler[0] != null)) { 
+                                contr.musteriListele(musteriler);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Liste Boş");
+                                Console.WriteLine("(anamenu)Devam etmek için bir tuşa basınız!!!");
+                                Console.ReadLine();
+                            }
                         }
                         break;
-                    case 3:
+                    case 4:
                         contr.paraYatır(musteriler);
                         break;
-                    case 4:
+                    case 3:
                         contr.musteriSil(musteriler);
                         break;
 
@@ -59,8 +64,8 @@ namespace ClassMetotDemo
             Console.Clear();
             Console.WriteLine("1- Musteri Ekle");
             Console.WriteLine("2-Musteri Listele");
-            Console.WriteLine("4-Musteri Sil");
-            Console.WriteLine("3-Müşteri İşlemleri(Para Yatır)");
+            Console.WriteLine("3-Musteri Sil");
+            Console.WriteLine("4-Müşteri İşlemleri(Para Yatır)");
             Console.WriteLine("9-Çıkış");
         }
     }
